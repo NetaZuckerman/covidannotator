@@ -1,51 +1,53 @@
-import sys, os
-import pandas as pd
-from datetime import datetime
+import difflib
+import csv
+from Bio.Seq import Seq
+from Bio import SeqIO
+from Bio import AlignIO
+from io import StringIO
+import numpy as np
 
 
-def main(argv):
-    now = datetime.now()
-    date_time = now.strftime("%Y%m%d")
-    f = open("AfterJoinedList.txt", "r")
-    lines = [line.rstrip() for line in f]
-    f.close()
+def getRegion(i,regionsList):
+    regionTitles = []
+    for region in regionsList:
+        if i + 1 in range(int(region["start"]), int(region["end"])):
+            regionTitles.append(region["id"])
+    if len(regionTitles) > 1:
+        return str(regionTitles[len(regionTitles)-1])
+    else: return str(regionTitles[0])
 
-    f = open("AfterJoinedList.txt", "a")
-    # Search for all the insertions csv files in a given path
-    insertionFiles = [os.path.join(root, name)
-                      for root, dirs, files in os.walk(argv[0])
-                      for name in files
-                      if dirs not in lines
-                      and "fasta.insertions" in name]
-    # Editing the csv files and insert them to an empty list
-    li = []
-    for table in insertionFiles:
-        # Add Files that combined to a list
-        for x in table.split('\\'):
-            if "NGS" in x or "ngs" in x:
-                f.write(x + '\n')
-        df = pd.read_csv(table)
-        for title in df.columns:
-            if "insertion" in title:
-                # Remove all the unnecessary title, write only the position of the insertion
-                justPosition = title.split()[-1]
-                df.rename(columns={title: justPosition}, inplace=True)
-                # Change strain to 0 for sorting
-            elif "strain" in title:
-                df.rename(columns={title: '0'}, inplace=True)
-        li.append(df)
+def main():
+    # importing the Regions list
+    with open('regions.csv', 'r') as f:
+        reader = csv.reader(f)
+        my_list = []
+        for row in reader:
+            my_list.append({'segment': row[0], 'id': row[1],
+                            'region': row[2], 'start': row[3], 'end': row[4], 'function': row[5]})
+        regionsList = my_list[1:]
 
-    # combine all files in the list
-    combined_csv = pd.concat(li, ignore_index=True)
-    # sorting columns by their insertion position
-    combined_csv = combined_csv[sorted(combined_csv.columns, key=lambda x: tuple(map(int, x.split('_'))))]
-    # changing back the strain col name
-    combined_csv.rename(columns={'0': 'strain'}, inplace=True)
-    # deleting cols that all of their rows are nan
-    combined_csv.dropna(axis=1, how='all', inplace=True)
-    # save to csv
-    combined_csv.to_csv("CombinedCsv_" + date_time + ".csv", index=False, encoding='utf-8-sig')
+    # Creating the output csv file
+    with open('output.csv', 'w', newline='') as csvfile:
+        fieldnames = ['Sequence ID', 'Reference Nucleotide', 'Mutation nucleotide', 'location', 'nuc name','protein']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        # parsing the pasta file
+        records = list(SeqIO.parse("FrenchVar_aligned.fasta", "fasta"))
+        # the first sequence is the reference
+        referenceSequence = list(records[0])
+        otherSequences = records[1:]
+        # Find mutations = iterating over each sequence and compare to the reference sequence
+        for record in otherSequences:
+            a = record.id
+            a = list(record)
+            for i, nucleotide in enumerate((record)):
+                if nucleotide != "-" and referenceSequence[i] != nucleotide:
+                    regionTitle=getRegion(i,regionsList)
+                    # Each mutation is written to the output csv file
+                    writer.writerow({'Sequence ID': record.id, 'Reference Nucleotide': referenceSequence[i],
+                                     'Mutation nucleotide': nucleotide, 'location': i + 1,
+                                     'nuc name': str(i + 1) + " " + referenceSequence[i] + " -> " + nucleotide,'protein':str(regionTitle)})
 
 
-if __name__ == '__main__':
-    main(sys.argv[1:])
+if __name__ == "__main__":
+    main()
