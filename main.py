@@ -106,7 +106,7 @@ def main():
     # Creating the output csv file
     with open('output.csv', 'w', newline='') as csvfile:
         fieldnames = ['Sequence ID', 'Reference Nucleotide', 'Mutation nucleotide', 'location', 'nuc name', 'protein',
-                      'AAMutation']
+                      'AAMutation', 'varname']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         # parsing the pasta file
@@ -123,8 +123,9 @@ def main():
                     regionTitle, regionStart, regionEnd = getRegion(i, regionsList)
                     RefAA = translate(''.join(map(str, referenceSequence)), regionStart - 1, regionEnd, codon_map)
                     OtherSeqAA = translate(str(record.seq), regionStart - 1, regionEnd, codon_map)
-                    if ((i + 1 - regionStart) / 3 == (int)(i + 1 - regionStart) / 3):
-                        aaMutIndex = int(((i + 1 - regionStart) / 3)) + 1
+                    aaMutIndexr = (i + 1 - regionStart) / 3
+                    if aaMutIndexr % 1 == 0:
+                        aaMutIndex = int(aaMutIndexr + 1)
                     else:
                         aaMutIndex = ceil((i + 1 - regionStart) / 3)
                     refaaseq = RefAA[aaMutIndex - 2:aaMutIndex + 2]
@@ -134,7 +135,8 @@ def main():
                     writer.writerow({'Sequence ID': record.id, 'Reference Nucleotide': referenceSequence[i],
                                      'Mutation nucleotide': nucleotide, 'location': i + 1,
                                      'nuc name': str(i + 1) + " " + referenceSequence[i] + " -> " + nucleotide,
-                                     'protein': str(regionTitle), 'AAMutation': AAMutToCSv})
+                                     'protein': str(regionTitle), 'AAMutation': AAMutToCSv,
+                                     'varname': str(regionTitle) + ":" + AAMutToCSv})
 
 
 if __name__ == "__main__":
