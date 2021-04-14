@@ -1,10 +1,7 @@
-import difflib
 import csv
 from Bio.Seq import Seq
 from Bio import SeqIO
-from Bio import AlignIO
-from io import StringIO
-import numpy as np
+import sys
 import re
 from math import ceil
 
@@ -89,13 +86,18 @@ def getRegion(i, regionsList):
             return region_id, filteredregionTitles[region_id][0], filteredregionTitles[region_id][1]
     else:
         filteredregionTitles = {k: v for k, v in regionTitles.items()}
-        region_id = str([*filteredregionTitles][0])
+        if filteredregionTitles:
+            region_id = str([*filteredregionTitles][0])
+        else:
+            filteredregionTitles["none"]=[0,0]
+            region_id = str([*filteredregionTitles][0])
         return region_id, filteredregionTitles[region_id][0], filteredregionTitles[region_id][1]
 
 
-def main():
+def main(argv):
     # importing the Regions list
-    with open('regions.csv', 'r') as f:
+    regiontable=argv[0]
+    with open(regiontable, 'r') as f:
         reader = csv.reader(f)
         my_list = []
         for row in reader:
@@ -110,14 +112,14 @@ def main():
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         # parsing the pasta file
-        records = list(SeqIO.parse("FrenchVar_aligned.fasta", "fasta"))
+        records = list(SeqIO.parse(argv[1], "fasta"))
         # the first sequence is the reference
         referenceSequence = list(records[0])
         otherSequences = records[1:]
+        # referenceSequence = list(SeqIO.parse("REF_NC_045512.2.fasta", "fasta"))[0].seq
+        # otherSequences = list(SeqIO.parse("9747.fa", "fasta"))
         # Find mutations = iterating over each sequence and compare to the reference sequence
         for record in otherSequences:
-            a = record.id
-            a = list(record)
             for i, nucleotide in enumerate((record)):
                 if nucleotide != "-" and nucleotide != "N" and referenceSequence[i] != nucleotide:
                     regionTitle, regionStart, regionEnd = getRegion(i, regionsList)
@@ -130,7 +132,10 @@ def main():
                         aaMutIndex = ceil((i + 1 - regionStart) / 3)
                     refaaseq = RefAA[aaMutIndex - 2:aaMutIndex + 2]
                     otheraaseq = OtherSeqAA[aaMutIndex - 2:aaMutIndex + 2]
-                    AAMutToCSv = str(RefAA[aaMutIndex - 1] + str(aaMutIndex) + OtherSeqAA[aaMutIndex - 1])
+                    if refaaseq:
+                        AAMutToCSv = str(RefAA[aaMutIndex - 1] + str(aaMutIndex) + OtherSeqAA[aaMutIndex - 1])
+                    else:
+                        AAMutToCSv="None"
                     # Each mutation is written to the output csv file
                     writer.writerow({'Sequence ID': record.id, 'Reference Nucleotide': referenceSequence[i],
                                      'Mutation nucleotide': nucleotide, 'location': i + 1,
@@ -140,4 +145,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
