@@ -13,5 +13,7 @@ Output -
 in the working directory "all_mutations" csv file with all the mutations in the sequences
 
 Running example -
+
 conda activate nextstrain
+
 python main.py /data3/netanel_scripts/filterSequences/uk_aligned_ref.fasta
