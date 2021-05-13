@@ -5,7 +5,7 @@ This program find all the mutations in given sequences.
 First activate conda - > conda activate nextstrain (or other env with pandas)
 
 Input - 
-in the wd folder have to be -"novelMutable.csv" "regions.csv" - they are attached to this git.
+in the wd folder have to be -"regions.csv" - also attached to this git.
 as input in the CLI -> the Fasta file, the first sequence must be the reference, other sequences need to be aligned.
 
 
