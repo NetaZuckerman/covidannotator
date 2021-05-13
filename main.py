@@ -190,7 +190,7 @@ def main(argv):
                     regionTitle, AAMutToCSv = getTranslate(i, regionsList, referenceSequence, record, 2)
                     writeToCSV(writer, record, referenceSequence[i], nucleotide, i, regionTitle, AAMutToCSv,
                                "Del")
-        if argv[1]:
+        if len(argv)>1:
             addInsertions(argv, writer, regionsList, referenceSequence)
         csvfile.close()
         print("all_mutations.csv file has created, calculating frequencies...")
