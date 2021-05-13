@@ -178,7 +178,8 @@ def main(argv):
         # otherSequences = list(SeqIO.parse("9747.fa", "fasta"))
         # Find mutations = iterating over each sequence and compare to the reference sequence
         for record in otherSequences:
-            for i, nucleotide in enumerate((record)):
+            record_upper = record.upper()
+            for i, nucleotide in enumerate(record_upper):
                 if nucleotide != "-" and nucleotide != "N" and referenceSequence[i] != nucleotide:
                     regionTitle, AAMutToCSv = getTranslate(i, regionsList, referenceSequence, record, 1)
                     # Each mutation is written to the output csv file
@@ -193,8 +194,6 @@ def main(argv):
             addInsertions(argv, writer, regionsList, referenceSequence)
         csvfile.close()
         print("all_mutations.csv file has created, calculating frequencies...")
-
-
 
 
 if __name__ == "__main__":
