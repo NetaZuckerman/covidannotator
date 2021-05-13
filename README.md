@@ -6,6 +6,7 @@ First activate conda - > conda activate nextstrain (or other env with pandas)
 
 Input - 
 in the wd folder have to be -"regions.csv" - also attached to this git.
+
 as input in the CLI -> the Fasta file, the first sequence must be the reference, other sequences need to be aligned.
 
 
