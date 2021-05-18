@@ -1,5 +1,4 @@
 import csv
-
 import numpy as np
 from Bio.Seq import Seq
 from Bio import SeqIO
@@ -152,6 +151,9 @@ def addInsertions(argv, writer, regionList, ref):
                     pass
 
 
+def calculateFreqs():
+    all_mutations=pd.read_csv("all_mutations.csv")
+
 def main(argv):
     print("Starting...")
     # importing the Regions list
@@ -186,7 +188,7 @@ def main(argv):
                     writeToCSV(writer, record, referenceSequence[i], nucleotide, i, regionTitle, AAMutToCSv,
                                "SNP")
                     # NonSyn = AAMutToCSv[0] != AAMutToCSv[len(AAMutToCSv) - 1]
-                elif i > 200 and nucleotide == "-":
+                elif 319 < i < 29855 and nucleotide == "-":
                     regionTitle, AAMutToCSv = getTranslate(i, regionsList, referenceSequence, record, 2)
                     writeToCSV(writer, record, referenceSequence[i], nucleotide, i, regionTitle, AAMutToCSv,
                                "Del")
@@ -194,6 +196,7 @@ def main(argv):
             addInsertions(argv, writer, regionsList, referenceSequence)
         csvfile.close()
         print("all_mutations.csv file has created, calculating frequencies...")
+        calculateFreqs()
 
 
 if __name__ == "__main__":
