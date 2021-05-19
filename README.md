@@ -2,19 +2,23 @@
 
 This program find all the mutations in given sequences.
 
-First activate conda - > conda activate nextstrain (or other env with pandas)
+First make sure you are on sudo mode, and the relevent conda enviorment is on - 
+
+1) sudo -s
+
+2) conda activate nextstrain (or other env with pandas)
+
+3) make sure that "regions.csv" is in the WD (download from this github)
+
 
 Input - 
-in the wd folder have to be -"regions.csv" - also attached to this git.
+the Multi-Fasta file, the first sequence must be the reference, other sequences need to be aligned.
 
-as input in the CLI -> the Fasta file, the first sequence must be the reference, other sequences need to be aligned.
-
+Optional Input - Insertions file, if included, the insertions will be added to the mutations file.
 
 Output -
 in the working directory "all_mutations" csv file with all the mutations in the sequences
 
 Running example -
-
-conda activate nextstrain
 
 python main.py /data3/netanel_scripts/filterSequences/uk_aligned_ref.fasta
