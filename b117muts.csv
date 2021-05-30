@@ -1,0 +1,72 @@
+nucleotide,AA,lineage original
+913 C -> T,S36S,B.1.1.7 - UK
+3267 C -> T,T183I,B.1.1.7 - UK
+5388 C -> A,A890D,B.1.1.7 - UK
+5986 C -> T,F1089F,B.1.1.7 - UK
+6954 T -> C,I1412T,B.1.1.7 - UK
+11288 T -> -,S106del,"B.1.1.7 - UK, B.1.351 - SA, P.1 - Manaus, B.1.1.318 - Global, B.1.526 - New york, B.1.620 - Global"
+11289 C -> -,S106del,"B.1.1.7 - UK, B.1.351 - SA, P.1 - Manaus, B.1.1.318 - Global, B.1.526 - New york, B.1.620 - Global"
+11290 T -> -,S106del,"B.1.1.7 - UK, B.1.351 - SA, P.1 - Manaus, B.1.1.318 - Global, B.1.526 - New york, B.1.620 - Global"
+11291 G -> -,G107del,"P.1 - Manaus, B.1.351 - SA, B.1.1.7 - UK, B.1.526 - New york, B.1.1.318 - Global, B.1.620 - Global"
+11292 G -> -,G107del,"P.1 - Manaus, B.1.351 - SA, B.1.1.7 - UK, B.1.526 - New york, B.1.1.318 - Global, B.1.620 - Global"
+11293 T -> -,G107del,"P.1 - Manaus, B.1.351 - SA, B.1.1.7 - UK, B.1.526 - New york, B.1.1.318 - Global, B.1.620 - Global"
+11294 T -> -,F108del,"P.1 - Manaus, B.1.351 - SA, B.1.1.7 - UK, B.1.526 - New york, B.1.1.318 - Global, B.1.620 - Global"
+11295 T -> -,F108del,"P.1 - Manaus, B.1.351 - SA, B.1.1.7 - UK, B.1.526 - New york, B.1.1.318 - Global, B.1.620 - Global"
+11296 T -> -,F108del,"P.1 - Manaus, B.1.351 - SA, B.1.1.7 - UK, B.1.526 - New york, B.1.1.318 - Global, B.1.620 - Global"
+14676 C -> T,P403P,B.1.1.7 - UK
+15279 C -> T,H604H,"B.1.1.7 - UK, A.VOI.2 - Tanzanian suspect"
+16176 T -> C,T903T,B.1.1.7 - UK
+21765 T -> -,HV69-70del,"B.1.525 - Global, B.1.1.7 - UK, B.1.620 - Global"
+21766 A -> -,HV69-70del,"B.1.525 - Global, B.1.1.7 - UK, B.1.620 - Global"
+21767 C -> -,HV69-70del,"B.1.525 - Global, B.1.1.7 - UK, B.1.620 - Global"
+21768 A -> -,HV69-70del,"B.1.525 - Global, B.1.1.7 - UK, B.1.620 - Global"
+21769 T -> -,HV69-70del,"B.1.525 - Global, B.1.1.7 - UK, B.1.620 - Global"
+21770 G -> -,HV69-70del,"B.1.525 - Global, B.1.1.7 - UK, B.1.620 - Global"
+21992 T -> -,Y144Del,"B.1.1.7 - UK, B.1.525 - Global, AT.1 - St Petersburg"
+21993 A -> -,Y144Del,"B.1.1.7 - UK, B.1.525 - Global, AT.1 - St Petersburg"
+21994 T -> -,Y144Del,"B.1.1.7 - UK, B.1.525 - Global, AT.1 - St Petersburg"
+23063 A -> T,N501Y,"B.1.1.7 - UK, B.1.351 - SA, P.1 - Manaus, A.27 - Mayotte, P.3 - Philippines, AP.1 - Wales"
+23271 C -> A,A570D,B.1.1.7 - UK
+23604 C -> A,P681H,"B.1.1.7 - UK, VUI_P681H_Israel, P.3 - Philippines, A.VOI.2 - Tanzanian suspect, B.1.1.318 - Global, B.1.620 - Global, B.1.1.519"
+23709 C -> T,T716I,"B.1.1.7 - UK, B.1.214.2 - Belgium"
+24506 T -> G,S982A,B.1.1.7 - UK
+24914 G -> C,D1118H,"B.1.1.7 - UK, B.1.620 - Global"
+27972 C -> T,Q27,B.1.1.7 - UK
+28048 G -> T,R52I,B.1.1.7 - UK
+28111 A -> G,Y73C,B.1.1.7 - UK
+28273del,a28273del,"B.1.1.7 - UK, P.3 - Philippines, B.1.526 - New york, B.1.214.2 - Belgium, B.1.526.1 - New york, R.1 - USA, B.1.617, B.1.617.1, B.1.617.2"
+28280 G -> C,D3L,"B.1.1.7 - UK, B.1.214.2 - Belgium"
+28281 A -> T,D3L,"B.1.1.7 - UK, B.1.214.2 - Belgium"
+28282 T -> A,D3L,"B.1.1.7 - UK, B.1.214.2 - Belgium"
+28977 C -> T,S235F,B.1.1.7 - UK
+28144 T -> C,L84S,A - basal
+23403 A -> G,D614G,"B.1 - basal,B.1.1.28 - basal (brazil),B.1.1.70 - basal,B.1.1 - basal,B.1.1.50 - basal IL,B.1.214 -basal Congo,B.1.1.317 - Basal Russia,B.1.1.1 - Basal"
+3037 C -> T,F106F,"B.1 - basal,B.1.1.28 - basal (brazil),B.1.1.70 - basal,B.1.1 - basal,B.1.1.50 - basal IL,B.1.214 -basal Congo,B.1.1.317 - Basal Russia,B.1.1.1 - Basal"
+14408 C -> T,P314L,"B.1 - basal,B.1.1.28 - basal (brazil),B.1.1.70 - basal,B.1.1 - basal,B.1.1.50 - basal IL,B.1.214 -basal Congo,B.1.1.317 - Basal Russia,B.1.1.1 - Basal"
+241 C -> T,241,"B.1 - basal,B.1.1.28 - basal (brazil),B.1.1.70 - basal,B.1.1 - basal,B.1.1.50 - basal IL,B.1.214 -basal Congo,B.1.1.317 - Basal Russia,B.1.1.1 - Basal"
+25088 G -> T,V1176F,B.1.1.28 - basal (brazil)
+28759 T -> C,P162P,B.1.1.70 - basal
+15972 A -> G,V835V,B.1.1.70 - basal
+10265 G -> A,G71S,B.1.1.70 - basal
+19718 C -> T,T33I,B.1.1.70 - basal
+28881 G -> A,R203K,"B.1.1 - basal,B.1.1.28 - basal (brazil),B.1.1.70 - basal,B.1.1.50 - basal IL,B.1.1.317 - Basal Russia,B.1.1.1 - Basal"
+28882 G -> A,R203K,"B.1.1 - basal,B.1.1.28 - basal (brazil),B.1.1.70 - basal,B.1.1.50 - basal IL,B.1.1.317 - Basal Russia,B.1.1.1 - Basal"
+28883 G -> C,G204R,"B.1.1 - basal,B.1.1.28 - basal (brazil),B.1.1.70 - basal,B.1.1.50 - basal IL,B.1.1.317 - Basal Russia,B.1.1.1 - Basal"
+4510 G -> A,V597V,B.1.1.50 - basal IL
+313 C -> T,L16L,B.1.1.50 - basal IL
+15438 G -> T,M657I,B.1.1.50 - basal IL
+25785 G -> T,W131C,B.1.1.50 - basal IL
+5907 C -> T,T1063I,B.1.214 -basal Congo
+4457 A -> G,I580V,B.1.214 -basal Congo
+12312 C -> T,A74V,B.1.214 -basal Congo
+28905 C -> T,A211V,B.1.1.317 - Basal Russia
+23731 C -> T,T723T,B.1.1.1 - Basal
+4002 C -> T,T428I,B.1.1.1 - Basal
+13536 C -> T,Y23Y,B.1.1.1 - Basal
+10097 G -> A,G15S,B.1.1.1 - Basal
+25844 C -> T,T151I,"B.1.1.7 - UK, B.1.618"
+29524 T -> C,T417T,B.1.1.7
+8950 C -> T,I132I,B.1.1.7
+19524 C -> T,L495L,B.1.1.7 IL signature
+21234 C -> T,A192A,B.1.1.7 IL signature
+27577 C -> T,Q62*,B.1.1.7 IL signature
