@@ -41,7 +41,7 @@ def main():
     freqTable.to_excel(writer, sheet_name='Mutations Frequencies', index=False)
     geneFreq.to_excel(writer, sheet_name='gene count')
     writer.save()
-    print("Freq_Table" + ".csv is ready")
+    print("Freq_Table" + ".xlsx is ready")
 
 
 if __name__ == '__main__':
