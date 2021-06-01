@@ -14,7 +14,9 @@ First make sure you are on sudo mode, and the relevent conda enviorment is on -
 Input - 
 the Multi-Fasta file, the first sequence must be the reference, other sequences need to be aligned.
 
-Optional Input - Insertions file, if included, the insertions will be added to the mutations file.
+Optional Input:
+-i (PATH for insertions file) if you want to include insertions to the excel table
+-n to include 'N' positions to the excel table
 
 Output -
 in the working directory "all_mutations" csv file with all the mutations in the sequences
