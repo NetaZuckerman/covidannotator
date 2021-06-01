@@ -8,7 +8,7 @@ First make sure you are on sudo mode, and the relevent conda enviorment is on -
 
 2) conda activate nextstrain (or other env with pandas)
 
-3) make sure that "regions.csv" is in the WD (download from this github)
+3) make sure that "regions.csv" and "b117muts.csv" is in the WD (download from this github)
 
 
 Input - 
