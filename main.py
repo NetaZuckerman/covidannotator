@@ -3,7 +3,7 @@ import pandas as pd
 import covidAnnotator
 import sys
 
-import loop
+#import loop
 
 
 def main():
