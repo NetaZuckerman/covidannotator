@@ -139,7 +139,7 @@ def writeToCSV(writer, record, refnuc, mutnuc, i, regionTitle, AAMutToCSv, type)
 
 
 def addInsertions(argv, writer, regionList, ref):
-    df = pd.read_csv(argv[1])
+    df = pd.read_csv(argv)
     for rowindex, row in df.iterrows():
         for colindex, cell in enumerate(row):
             if cell is not np.nan:
@@ -157,6 +157,8 @@ def calculateFreqs():
 
 
 def main(argv):
+    nFlag = 1 if argv.n else 0
+    insPath = ''.join(map(str, argv.insPath)) if argv.insPath else 0
     print("Starting...")
     # importing the Regions list
     regiontable = "regions.csv"
@@ -174,7 +176,7 @@ def main(argv):
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         # parsing the pasta file
-        records = list(SeqIO.parse(argv[0], "fasta"))
+        records = list(SeqIO.parse(argv.file, "fasta"))
         # the first sequence is the reference
         referenceSequence = list(records[0])
         otherSequences = records[1:]
@@ -199,17 +201,17 @@ def main(argv):
                     regionTitle, AAMutToCSv = getTranslate(i, regionsList, referenceSequence, record, 2)
                     writeToCSV(writer, record, referenceSequence[i], nucleotide, i, regionTitle, AAMutToCSv,
                                "Del")
-                elif 100 < i < 29855 and nucleotide == "N":
+                elif nFlag and 100 < i < 29855 and nucleotide == "N":
                     regionTitle, AAMutToCSv = getTranslate(i, regionsList, referenceSequence, record, 3)
                     writeToCSV(writer, record, referenceSequence[i], nucleotide, i, regionTitle, AAMutToCSv,
                                "N")
 
-        if len(argv) > 1:
-            addInsertions(argv, writer, regionsList, referenceSequence)
+        if insPath:
+            addInsertions(insPath, writer, regionsList, referenceSequence)
         csvfile.close()
         print("all_mutations.csv file has created, calculating frequencies...")
         calculateFreqs()
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main()

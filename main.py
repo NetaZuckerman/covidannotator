@@ -2,8 +2,7 @@
 import pandas as pd
 import covidAnnotator
 import sys
-
-#import loop
+import argparse
 
 
 def main():
@@ -48,6 +47,12 @@ def main():
 
 
 if __name__ == '__main__':
-  #  userChoose = loop.main()
-    covidAnnotator.main(sys.argv[1:])
+    #  userChoose = loop.main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('file')
+    parser.add_argument("-i", help="insertions files path", nargs=1, type=str,
+                        dest='insPath')  # dest = name of variable
+    parser.add_argument("-n", help="to add 'N' to excel", action='store_true')  # dest = name of variable
+    args = parser.parse_args()
+    covidAnnotator.main(args)
     main()
