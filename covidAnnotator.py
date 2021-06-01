@@ -91,7 +91,7 @@ def getRegion(i, regionsList):
         if filteredregionTitles:
             region_id = str([*filteredregionTitles][0])
         else:
-            filteredregionTitles["none"] = [0, 0]
+            filteredregionTitles["extragenic"] = [0, 0]
             region_id = str([*filteredregionTitles][0])
         return region_id, filteredregionTitles[region_id][0], filteredregionTitles[region_id][1]
 
@@ -114,11 +114,12 @@ def getTranslate(i, regionsList, referenceSequence, record, flag):
         except:
             print(str(aaMutIndex) + " " + str(len(RefAA)) + " " + str(len(OtherSeqAA)))
             AAMutToCSv = "None"
-
         if flag == 2:
             AAMutToCSv = AAMutToCSv[:-1] + "Del"
+        if flag == 3:
+            AAMutToCSv = AAMutToCSv[:-1] + "N"
     else:
-        AAMutToCSv = "None"
+        AAMutToCSv = "extragenic"
     return regionTitle, AAMutToCSv
 
 
@@ -152,7 +153,8 @@ def addInsertions(argv, writer, regionList, ref):
 
 
 def calculateFreqs():
-    all_mutations=pd.read_csv("all_mutations.csv")
+    all_mutations = pd.read_csv("all_mutations.csv")
+
 
 def main(argv):
     print("Starting...")
@@ -184,15 +186,25 @@ def main(argv):
             for i, nucleotide in enumerate(record):
                 if nucleotide != "-" and nucleotide != "N" and referenceSequence[i] != nucleotide:
                     regionTitle, AAMutToCSv = getTranslate(i, regionsList, referenceSequence, record, 1)
+                    if regionTitle.startswith("UTR"):
+                        AAMutToCSv = "UTR"
                     # Each mutation is written to the output csv file
+                    muttype = "SNP"
+                    if AAMutToCSv[0] == AAMutToCSv[len(AAMutToCSv) - 1]:
+                        muttype = "SNP_Silent"
                     writeToCSV(writer, record, referenceSequence[i], nucleotide, i, regionTitle, AAMutToCSv,
-                               "SNP")
+                               muttype)
                     # NonSyn = AAMutToCSv[0] != AAMutToCSv[len(AAMutToCSv) - 1]
                 elif 319 < i < 29855 and nucleotide == "-":
                     regionTitle, AAMutToCSv = getTranslate(i, regionsList, referenceSequence, record, 2)
                     writeToCSV(writer, record, referenceSequence[i], nucleotide, i, regionTitle, AAMutToCSv,
                                "Del")
-        if len(argv)>1:
+                elif 100 < i < 29855 and nucleotide == "N":
+                    regionTitle, AAMutToCSv = getTranslate(i, regionsList, referenceSequence, record, 3)
+                    writeToCSV(writer, record, referenceSequence[i], nucleotide, i, regionTitle, AAMutToCSv,
+                               "N")
+
+        if len(argv) > 1:
             addInsertions(argv, writer, regionsList, referenceSequence)
         csvfile.close()
         print("all_mutations.csv file has created, calculating frequencies...")
