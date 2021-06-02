@@ -3,11 +3,12 @@ import pandas as pd
 import covidAnnotator
 import sys
 import argparse
+import os
 
 
 def main():
-    all_mutations = pd.read_csv("all_mutations.csv")
-    b117muts = pd.read_csv("b117muts.csv")
+    all_mutations = pd.read_csv(os.path.dirname(os.path.abspath(__file__))+"/all_mutations.csv")
+    b117muts = pd.read_csv(os.path.dirname(os.path.abspath(__file__))+"/b117muts.csv")
     uniqueIDs = pd.unique(all_mutations["Sequence ID"])
     uniqueMuts = pd.unique(all_mutations["nuc name"])
     numofSequences = len(uniqueIDs)
