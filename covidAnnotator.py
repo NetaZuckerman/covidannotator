@@ -2,10 +2,10 @@ import csv
 import numpy as np
 from Bio.Seq import Seq
 from Bio import SeqIO
-import sys
 import re
 from math import ceil
 import pandas as pd
+import os
 
 codon_map = {
     "TTT": "F", "TTC": "F", "TTA": "L", "TTG": "L",
@@ -152,16 +152,12 @@ def addInsertions(argv, writer, regionList, ref):
                     pass
 
 
-def calculateFreqs():
-    all_mutations = pd.read_csv("all_mutations.csv")
-
-
 def main(argv):
     nFlag = 1 if argv.n else 0
     insPath = ''.join(map(str, argv.insPath)) if argv.insPath else 0
     print("Starting...")
     # importing the Regions list
-    regiontable = "regions.csv"
+    regiontable = os.path.dirname(os.path.abspath(__file__))+"/regions.csv"
     with open(regiontable, 'r') as f:
         reader = csv.reader(f)
         my_list = []
@@ -210,7 +206,6 @@ def main(argv):
             addInsertions(insPath, writer, regionsList, referenceSequence)
         csvfile.close()
         print("all_mutations.csv file has created, calculating frequencies...")
-        calculateFreqs()
 
 
 if __name__ == "__main__":
