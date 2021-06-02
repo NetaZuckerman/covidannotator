@@ -15,7 +15,7 @@ Input -
 the Multi-Fasta file, the first sequence must be the reference, other sequences need to be aligned.
 
 Optional Input:
--i (PATH for insertions file) if you want to include insertions to the excel table
+-i (PATH for insertions file) if you want to include insertions to the excel table ( the insertions are the output files from augur)
 -n to include 'N' positions to the excel table
 
 Output -
