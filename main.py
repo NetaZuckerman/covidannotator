@@ -40,7 +40,7 @@ def main():
     if not geneFreq.empty:
         geneFreq['Freq'] = geneFreq / num_muts * 100
 
-    writer = pd.ExcelWriter("Freq_Table" + ".xlsx", engine='xlsxwriter')
+    writer = pd.ExcelWriter("Freq_Table" + ".xlsx", engine='openpyxl')
     freqTable.to_excel(writer, sheet_name='Mutations Frequencies', index=False)
     geneFreq.to_excel(writer, sheet_name='gene count')
     writer.save()
