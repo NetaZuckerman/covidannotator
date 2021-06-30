@@ -115,7 +115,7 @@ def getTranslate(i, regionsList, referenceSequence, record, flag):
             print(str(aaMutIndex) + " " + str(len(RefAA)) + " " + str(len(OtherSeqAA)))
             AAMutToCSv = "None"
         if flag == 2:
-            AAMutToCSv = AAMutToCSv[:-1] + "Del"
+            AAMutToCSv = AAMutToCSv[:-1] + "deletion"
         if flag == 3:
             AAMutToCSv = AAMutToCSv[:-1] + "N"
     else:
